@@ -31,7 +31,7 @@ return [
     ...
     'modules' => [
         'partials' => [
-            'class' => 'infoweb-internet-solutions\partials\Module',
+            'class' => 'infoweb\partials\Module',
         ],
     ],
     ...
