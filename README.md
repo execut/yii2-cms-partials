@@ -19,3 +19,21 @@ or add
 ```
 
 to the require section of your `composer.json` file.
+
+
+Usage
+-----
+
+Once the extension is installed, simply modify your backend configuration as follows:
+
+```php
+return [
+    ...
+    'modules' => [
+        'partials' => [
+            'class' => 'infoweb-internet-solutions\partials\Module',
+        ],
+    ],
+    ...
+];
+```
