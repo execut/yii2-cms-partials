@@ -1,0 +1,28 @@
+{
+	"name": "infoweb-internet-solutions/yii2-cms-partials",
+	"description": "CMS partials module for Yii2",
+	"keywords": ["yii2", "yii2-cms-partials", "cms", "infoweb"],
+	"type": "yii2-extension",
+    "license": "MIT",
+    "support": {
+        "issues": "https://github.com/infoweb-internet-solutions/yii2-cms-partials/issues?state=open",
+        "source": "https://github.com/infoweb-internet-solutions/yii2-cms-partials"
+    },
+    "authors": [
+        {
+            "name": "Fabio Maggio",
+            "email": "fabio@infoweb.be",
+            "homepage": "http://www.infoweb.be/"
+        }
+    ],
+    "minimum-stability": "dev",
+	"require": {
+	   "yiisoft/yii2": "*",
+	   "infoweb-internet-solutions/yii2-cms": "*"
+	},
+	"autoload": {
+		"psr-4": {
+            "infoweb-internet-solutions\\partials\\": ""
+        }
+	}
+}
