@@ -15,7 +15,7 @@ class m140930_065454_init extends Migration
         
         // Create 'page_partials' table
         $this->createTable('{{%page_partials}}', [
-            'id'                    => Schema::TYPE_PK . ' UNSIGNED',
+            'id'                    => Schema::TYPE_PK,
             'type'                  => "ENUM('system','user-defined') NOT NULL DEFAULT 'user-defined'",
             'created_at'            => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL',
             'updated_at'            => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL',
@@ -23,17 +23,17 @@ class m140930_065454_init extends Migration
         
         // Create 'page_partials_lang' table
         $this->createTable('{{%page_partials_lang}}', [
-            'page_partial_id'       => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL',
+            'page_partial_id'       => Schema::TYPE_INTEGER . ' NOT NULL',
             'language'              => Schema::TYPE_STRING . '(2) NOT NULL',
             'name'                  => Schema::TYPE_STRING . '(255) NOT NULL',
             'content'               => Schema::TYPE_TEXT . ' NOT NULL',
             'created_at'            => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL',
-            'updated_at'            => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL',
-            0                       => 'PRIMARY KEY (`page_partial_id`, `language`)',
-            1                       => 'INDEX `language` (`language`)'
+            'updated_at'            => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL'
         ], $tableOptions);
         
-        $this->addForeignKey('FK_PAGE_PARTIALS_LANG_PAGE_PARTIAL_ID', '{{%page_partials_lang}}', 'page_partial_id', '{{%page_partials}}', 'id', 'RISTRICT', 'CASCADE');
+        $this->addPrimaryKey('page_partial_id_language', '{{%page_partials_lang}}', ['page_partial_id', 'language']);
+        $this->createIndex('language', '{{%page_partials_lang}}', 'language');
+        $this->addForeignKey('FK_PAGE_PARTIALS_LANG_PAGE_PARTIAL_ID', '{{%page_partials_lang}}', 'page_partial_id', '{{%page_partials}}', 'id', 'CASCADE', 'RESTRICT');
     }
 
     public function down()
