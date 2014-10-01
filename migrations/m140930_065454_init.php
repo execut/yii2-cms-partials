@@ -38,8 +38,7 @@ class m140930_065454_init extends Migration
 
     public function down()
     {
-        echo "m140930_065454_init cannot be reverted.\n";
-
-        return false;
+        $this->dropTable('page_partials_lang');
+        $this->dropTable('page_partials');
     }
 }
