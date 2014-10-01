@@ -17,12 +17,12 @@ use yii\bootstrap\Tabs;
         'id'                        => 'page-partial-form',
         'enableAjaxValidation' => true,
         'enableClientValidation' => false,
-        'afterValidateAll'  => 'function($form, jqXHR, textStatus) {
+        /*'afterValidateAll'  => 'function($form, jqXHR, textStatus) {
             // The first tab that contains errors has to be shown
             if ($(".has-error").length) {
                 $("a[href=#"+$(".has-error").parents(".tab-pane").attr("id")+"]").tab("show");    
             }
-        }'        
+        }'*/        
     ]);
 
     // Initialize the tabs

@@ -1,5 +1,5 @@
 <?php
-use dosamigos\ckeditor\CKEditor;
+use mihaildev\ckeditor\CKEditor;
 ?>
 <div class="tab-content language-tab">
 
@@ -9,11 +9,7 @@ use dosamigos\ckeditor\CKEditor;
     ]); ?>
     
     <?= $form->field($model, "[{$model->language}]content")->widget(CKEditor::className(), [
-        'options' => [
-            'rows' => 20,
-            'name' => "PagePartialLang[{$model->language}][content]",           
-        ],
-        'clientOptions' => [
+        'editorOptions' => [
             'height' => 300,
             'toolbarGroups' => [
                 ['name' => 'clipboard', 'groups' => ['mode','undo', 'selection', 'clipboard','doctools']],
@@ -25,8 +21,11 @@ use dosamigos\ckeditor\CKEditor;
                 ['name' => 'links'],
                 ['name' => 'others'],
             ],
-            'removeButtons' => 'Smiley,Iframe'
+            'removeButtons' => 'Smiley,Iframe',
+            'rows' => 20,
+            'name' => "PagePartialLang[{$model->language}][content]",
+            'preset' => 'custom',
         ],
-        'preset' => 'custom',
+        
     ]); ?>
 </div>
