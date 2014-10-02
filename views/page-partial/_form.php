@@ -15,14 +15,9 @@ use yii\bootstrap\Tabs;
     // Init the form
     $form = ActiveForm::begin([
         'id'                        => 'page-partial-form',
-        'enableAjaxValidation' => true,
-        'enableClientValidation' => false,
-        /*'afterValidateAll'  => 'function($form, jqXHR, textStatus) {
-            // The first tab that contains errors has to be shown
-            if ($(".has-error").length) {
-                $("a[href=#"+$(".has-error").parents(".tab-pane").attr("id")+"]").tab("show");    
-            }
-        }'*/        
+        'options'                   => ['class' => 'tabbed-form'],
+        'enableAjaxValidation'      => true,
+        'enableClientValidation'    => false        
     ]);
 
     // Initialize the tabs

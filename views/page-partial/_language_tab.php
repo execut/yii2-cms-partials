@@ -2,7 +2,6 @@
 use mihaildev\ckeditor\CKEditor;
 ?>
 <div class="tab-content language-tab">
-
     <?= $form->field($model, "[{$model->language}]name")->textInput([
         'maxlength' => 255,
         'name' => "PagePartialLang[{$model->language}][name]"

@@ -5,5 +5,9 @@ use yii\helpers\Html;
     <?= $form->field($model, 'type')->dropDownList([
         'system'        => Yii::t('app', 'System'),
         'user-defined'  => Yii::t('app', 'User defined')
+    ],[
+        'options' => [
+            'system' => ['disabled' => (Yii::$app->user->can('Superadmin')) ? false : true]
+        ]
     ]); ?>
 </div>
