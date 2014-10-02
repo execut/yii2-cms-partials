@@ -66,7 +66,7 @@ class PagePartialController extends Controller
     {
         $languages = Yii::$app->params['languages'];
         
-        // Default to 'user-defined' type
+        // Load the model, default to 'user-defined' type
         $model = new PagePartial(['type' => 'user-defined']);
         
         // Load all the translations
@@ -136,7 +136,14 @@ class PagePartialController extends Controller
                 // Set flash message
                 Yii::$app->getSession()->setFlash('partial', Yii::t('app', '{item} has been created', ['item' => $model->name]));
               
-                return $this->redirect(['index']);    
+                // Take appropriate action based on the pushed button
+                if (isset($post['close'])) {
+                    return $this->redirect(['index']);
+                } elseif (isset($post['new'])) {
+                    return $this->redirect(['create']);
+                } else {
+                    return $this->redirect(['update', 'id' => $model->id]);
+                }    
             }    
         }
 
@@ -222,7 +229,14 @@ class PagePartialController extends Controller
                 // Set flash message
                 Yii::$app->getSession()->setFlash('partial', Yii::t('app', '{item} has been updated', ['item' => $model->name]));
               
-                return $this->redirect(['index']);    
+                // Take appropriate action based on the pushed button
+                if (isset($post['close'])) {
+                    return $this->redirect(['index']);
+                } elseif (isset($post['new'])) {
+                    return $this->redirect(['create']);
+                } else {
+                    return $this->redirect(['update', 'id' => $model->id]);
+                }    
             }    
         }
 
