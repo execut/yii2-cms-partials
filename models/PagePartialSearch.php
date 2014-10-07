@@ -19,7 +19,7 @@ class PagePartialSearch extends PagePartial
     {
         return [
             [['id', 'created_at', 'updated_at'], 'integer'],
-            [['type'], 'safe'],
+            [['name'], 'safe'],
         ];
     }
 
@@ -42,6 +42,8 @@ class PagePartialSearch extends PagePartial
     public function search($params)
     {
         $query = PagePartial::find();
+        
+        $query->andFilterWhere(['language' => Yii::$app->language]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -49,6 +51,15 @@ class PagePartialSearch extends PagePartial
                 'pageSize' => 50,
             ]
         ]);
+        
+        // Join the entity model as a relation
+        $query->joinWith(['translations']);
+        
+        // enable sorting for the related column
+        $dataProvider->sort->attributes['name'] = [
+            'asc' => ['name' => SORT_ASC],
+            'desc' => ['name' => SORT_DESC],
+        ];
 
         if (!($this->load($params) && $this->validate())) {
             return $dataProvider;
@@ -60,7 +71,7 @@ class PagePartialSearch extends PagePartial
             'updated_at' => $this->updated_at,
         ]);
 
-        $query->andFilterWhere(['like', 'type', $this->type]);
+        $query->andFilterWhere(['like', 'name', $this->name]);
 
         return $dataProvider;
     }
