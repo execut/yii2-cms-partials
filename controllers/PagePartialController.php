@@ -69,9 +69,6 @@ class PagePartialController extends Controller
         // Load the model, default to 'user-defined' type
         $model = new PagePartial(['type' => 'user-defined']);
         
-        // Load all the translations
-        $model->loadTranslations(array_keys($languages));
-        
         if (Yii::$app->request->getIsPost()) {
             
             $post = Yii::$app->request->post();
@@ -162,9 +159,6 @@ class PagePartialController extends Controller
     {
         $languages = Yii::$app->params['languages'];
         $model = $this->findModel($id);
-        
-        // Load all the translations
-        $model->loadTranslations(array_keys($languages));
         
         if (Yii::$app->request->getIsPost()) {
             
