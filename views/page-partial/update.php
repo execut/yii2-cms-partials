@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $model infoweb\partials\models\PagePartial */
 
 $this->title = Yii::t('app', 'Update {modelClass}: ', [
-    'modelClass' => 'Page Partial',
+    'modelClass' => Yii::t('infoweb/partials', 'Page Partial'),
 ]) . ' ' . $model->name;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Page Partials'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];

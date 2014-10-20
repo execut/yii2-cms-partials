@@ -59,7 +59,7 @@ class PagePartialLang extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'page_partial_id' => Yii::t('app', 'Page Partial ID'),
+            'page_partial_id' => Yii::t('infoweb/partials', 'Page Partial ID'),
             'language' => Yii::t('app', 'Language'),
             'name' => Yii::t('app', 'Name'),
             'content' => Yii::t('app', 'Content'),

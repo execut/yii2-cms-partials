@@ -8,7 +8,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel infoweb\partials\models\PagePartialSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Page Partials');
+$this->title = Yii::t('infoweb/partials', 'Page Partials');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="page-partial-index">
@@ -24,7 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a(Yii::t('app', 'Create {modelClass}', [
-            'modelClass' => 'Page Partial',
+            'modelClass' => Yii::t('infoweb/partials', 'Page Partial'),
         ]), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 

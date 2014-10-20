@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model infoweb\partials\models\PagePartial */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Page Partials'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('infoweb/partials', 'Page Partials'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="page-partial-view">
