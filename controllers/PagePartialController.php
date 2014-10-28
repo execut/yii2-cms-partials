@@ -248,7 +248,19 @@ class PagePartialController extends Controller
     public function actionDelete($id)
     {
         $model = $this->findModel($id);
-        $model->delete();
+        
+        try {                    
+            // Only Superadmin can delete system partials
+            if ($model->type == PagePartial::TYPE_SYSTEM && !Yii::$app->user->can('Superadmin'))
+                throw new \yii\base\Exception(Yii::t('app', 'You do not have the right permissions to delete this item'));
+            
+            $model->delete();
+        } catch (\yii\base\Exception $e) {
+            // Set flash message
+            Yii::$app->getSession()->setFlash('partial-error', $e->getMessage());
+    
+            return $this->redirect(['index']);        
+        } 
         
         // Set flash message
         $model->language = Yii::$app->language;

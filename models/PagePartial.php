@@ -18,6 +18,9 @@ use dosamigos\translateable\TranslateableBehavior;
  */
 class PagePartial extends \yii\db\ActiveRecord
 {
+    const TYPE_SYSTEM = 'system';
+    const TYPE_USER_DEFINED = 'user-defined';
+    
     /**
      * @inheritdoc
      */
