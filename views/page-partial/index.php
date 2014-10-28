@@ -13,28 +13,19 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="page-partial-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-   
-    <?php // Flash message ?>
-    <?php if (Yii::$app->getSession()->hasFlash('partial')): ?>
-    <div class="alert alert-success">
-        <p><?= Yii::$app->getSession()->getFlash('partial') ?></p>
-    </div>
-    <?php endif; ?>
-    
-    <?php if (Yii::$app->getSession()->hasFlash('partial-error')): ?>
-    <div class="alert alert-danger">
-        <p><?= Yii::$app->getSession()->getFlash('partial-error') ?></p>
-    </div>
-    <?php endif; ?>
-
-    <p>
+    <?php // Title ?>
+    <h1>
+        <?= Html::encode($this->title) ?>
+        <?php // Buttons ?>
         <?= Html::a(Yii::t('app', 'Create {modelClass}', [
             'modelClass' => Yii::t('infoweb/partials', 'Page Partial'),
         ]), ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+    </h1>
+   
+    <?php // Flash messages ?>
+    <?php echo $this->render('_flash_messages'); ?>
 
-    <?php // Gridview widget ?>
+    <?php // Gridview ?>
     <?php Pjax::begin([
         'id'=>'grid-pjax'
     ]); ?>
