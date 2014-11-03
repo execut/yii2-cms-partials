@@ -40,16 +40,16 @@ class PagePartialLang extends \yii\db\ActiveRecord
                 return !$model->isNewRecord;
             }],
             // Only required for the app language
-            [['name', 'content'], 'required', 'when' => function($model) {
+            [['content'], 'required', 'when' => function($model) {
                 return $model->language == Yii::$app->language;
             }],
             // Trim
-            [['name', 'content'], 'trim'],
+            [['title', 'content'], 'trim'],
             // Types
             [['page_partial_id', 'created_at', 'updated_at'], 'integer'],
             [['content'], 'string'],
             [['language'], 'string', 'max' => 2],
-            [['name'], 'string', 'max' => 255]
+            [['title'], 'string', 'max' => 255]
         ];
     }
 
@@ -61,7 +61,7 @@ class PagePartialLang extends \yii\db\ActiveRecord
         return [
             'page_partial_id' => Yii::t('infoweb/partials', 'Page Partial ID'),
             'language' => Yii::t('app', 'Language'),
-            'name' => Yii::t('app', 'Name'),
+            'title' => Yii::t('app', 'Title'),
             'content' => Yii::t('app', 'Content'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
