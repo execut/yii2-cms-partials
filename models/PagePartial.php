@@ -11,6 +11,7 @@ use dosamigos\translateable\TranslateableBehavior;
 /**
  * This is the model class for table "page_partials".
  *
+ * @todo Update properties
  * @property string $id
  * @property string $type
  * @property string $created_at
@@ -39,6 +40,8 @@ class PagePartial extends \yii\db\ActiveRecord
             [['type'], 'required'],
             // Types
             [['type'], 'string'],
+            [['name'], 'string', 'max' => 255],
+            [['name'], 'trim'],
             ['type', 'in', 'range' => ['system', 'user-defined']],
             [['created_at', 'updated_at'], 'integer'],
             // Default type to 'user-defined'
@@ -54,6 +57,7 @@ class PagePartial extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'type' => Yii::t('app', 'Type'),
+            'name' => Yii::t('app', 'Name'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
         ];
@@ -65,7 +69,7 @@ class PagePartial extends \yii\db\ActiveRecord
             'trans' => [
                 'class' => TranslateableBehavior::className(),
                 'translationAttributes' => [
-                    'name',
+                    'title',
                     'content'
                 ]
             ],

@@ -17,6 +17,7 @@ class m140930_065454_init extends Migration
         $this->createTable('{{%page_partials}}', [
             'id'                    => Schema::TYPE_PK,
             'type'                  => "ENUM('system','user-defined') NOT NULL DEFAULT 'user-defined'",
+            'name'                  => Schema::TYPE_STRING . '(255) NOT NULL',
             'created_at'            => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL',
             'updated_at'            => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL',
         ], $tableOptions);
@@ -25,7 +26,7 @@ class m140930_065454_init extends Migration
         $this->createTable('{{%page_partials_lang}}', [
             'page_partial_id'       => Schema::TYPE_INTEGER . ' NOT NULL',
             'language'              => Schema::TYPE_STRING . '(2) NOT NULL',
-            'name'                  => Schema::TYPE_STRING . '(255) NOT NULL',
+            'title'                  => Schema::TYPE_STRING . '(255) NOT NULL',
             'content'               => Schema::TYPE_TEXT . ' NOT NULL',
             'created_at'            => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL',
             'updated_at'            => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL'

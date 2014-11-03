@@ -115,7 +115,7 @@ class PagePartialController extends Controller
                     
                     // Set the translation language and attributes                    
                     $model->language    = $languageId;
-                    $model->name        = $data['name'];
+                    $model->title        = $data['title'];
                     $model->content     = $data['content'];
                     
                     if (!$model->saveTranslation()) {
@@ -205,7 +205,7 @@ class PagePartialController extends Controller
                     $data = $post['PagePartialLang'][$languageId];
                     
                     $model->language    = $languageId;
-                    $model->name        = $data['name'];
+                    $model->title        = $data['title'];
                     $model->content     = $data['content'];
                     
                     if (!$model->saveTranslation()) {

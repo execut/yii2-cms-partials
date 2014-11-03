@@ -17,11 +17,13 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1>
         <?= Html::encode($this->title) ?>
         <?php // Buttons ?>
-        <?= Html::a(Yii::t('app', 'Create {modelClass}', [
-            'modelClass' => Yii::t('infoweb/partials', 'Page Partial'),
-        ]), ['create'], ['class' => 'btn btn-success']) ?>
+        <div class="pull-right">
+            <?= Html::a(Yii::t('app', 'Create {modelClass}', [
+                'modelClass' => Yii::t('infoweb/partials', 'Page Partial'),
+            ]), ['create'], ['class' => 'btn btn-success']) ?>
+        </div>
     </h1>
-   
+
     <?php // Flash messages ?>
     <?php echo $this->render('_flash_messages'); ?>
 
