@@ -9,6 +9,6 @@ use mihaildev\ckeditor\CKEditor;
     
     <?= $form->field($model, "[{$model->language}]content")->widget(CKEditor::className(), [
         'name' => "PagePartialLang[{$model->language}][content]",
-        'editorOptions' => Yii::$app->getModule('cms')->getCKEditorOptions(),        
+        'editorOptions' => Yii::$app->getModule('cms')->getCKEditorOptions(),
     ]); ?>
 </div>
