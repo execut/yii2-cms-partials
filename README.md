@@ -27,15 +27,12 @@ Usage
 Once the extension is installed, simply modify your backend configuration as follows:
 
 ```php
-return [
+'modules' => [
     ...
-    'modules' => [
-        'partials' => [
-            'class' => 'infoweb\partials\Module',
-        ],
+    'partials' => [
+        'class' => 'infoweb\partials\Module',
     ],
-    ...
-];
+],
 ```
 
 Import the translations and use category 'infoweb/partials':
