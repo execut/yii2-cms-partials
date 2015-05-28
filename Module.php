@@ -6,6 +6,14 @@ class Module extends \yii\base\Module
 {
     public $controllerNamespace = 'infoweb\partials\controllers';
 
+    /**
+     * Module specific configuration of the ckEditor
+     * @var array
+     */
+    public $ckEditorOptions = [
+        'height' => 500
+    ];
+    
     public function init()
     {
         parent::init();

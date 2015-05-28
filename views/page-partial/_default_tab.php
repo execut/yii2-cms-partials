@@ -1,16 +1,17 @@
 <?php
-use yii\helpers\Html;
+use yii\bootstrap\Tabs;
+
+$tabs = [];
+
+// Add the language tabs
+foreach (Yii::$app->params['languages'] as $languageId => $languageName) {
+        $tabs[] = [
+            'label' => $languageName,
+            'content' => $this->render('_default_language_tab', ['model' => $model->getTranslation($languageId), 'form' => $form]),
+            'active' => ($languageId == Yii::$app->language) ? true : false
+        ];
+    }
 ?>
 <div class="tab-content default-tab">
-
-    <?= $form->field($model, "name")->textInput(); ?>
-
-    <?= $form->field($model, 'type')->dropDownList([
-        'system'        => Yii::t('app', 'System'),
-        'user-defined'  => Yii::t('app', 'User defined')
-    ],[
-        'options' => [
-            'system' => ['disabled' => (Yii::$app->user->can('Superadmin')) ? false : true]
-        ]
-    ]); ?>
+    <?= Tabs::widget(['items' => $tabs]); ?>
 </div>

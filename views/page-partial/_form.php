@@ -19,23 +19,26 @@ use yii\bootstrap\Tabs;
         'enableAjaxValidation'      => true,
         'enableClientValidation'    => false        
     ]);
-
-    // Initialize the tabs
-    $tabs = [];
     
     // Add the language tabs
-    foreach (Yii::$app->params['languages'] as $languageId => $languageName) {
+    /*foreach (Yii::$app->params['languages'] as $languageId => $languageName) {
         $tabs[] = [
             'label' => $languageName,
             'content' => $this->render('_language_tab', ['model' => $model->getTranslation($languageId), 'form' => $form]),
             'active' => ($languageId == Yii::$app->language) ? true : false
         ];
-    }
+    }*/
     
-    // Add the default tab
-    $tabs[] = [
-        'label' => Yii::t('app', 'General'),
-        'content' => $this->render('_default_tab', ['model' => $model, 'form' => $form]),
+    // Initialize the tabs
+    $tabs = [
+        [
+            'label' => Yii::t('app', 'General'),
+            'content' => $this->render('_default_tab', ['model' => $model, 'form' => $form]),
+        ],
+        [
+            'label'     => Yii::t('app', 'Data'),
+            'content'   => $this->render('_data_tab', ['model' => $model, 'form' => $form]),
+        ],
     ]; 
     
     // Display the tabs
