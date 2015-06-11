@@ -10,6 +10,6 @@ use yii\helpers\ArrayHelper;
     
     <?= $form->field($model, "[{$model->language}]content")->widget(CKEditor::className(), [
         'name' => "PagePartialLang[{$model->language}][content]",
-        'editorOptions' => ArrayHelper::merge(Yii::$app->getModule('cms')->getCKEditorOptions(), Yii::$app->getModule('pages')->ckEditorOptions),
+        'editorOptions' => ArrayHelper::merge(Yii::$app->getModule('cms')->getCKEditorOptions(), Yii::$app->getModule('partials')->ckEditorOptions),
     ]); ?>
 </div>
