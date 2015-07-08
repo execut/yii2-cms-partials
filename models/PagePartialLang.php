@@ -39,10 +39,6 @@ class PagePartialLang extends \yii\db\ActiveRecord
             [['page_partial_id'], 'required', 'when' => function($model) {
                 return !$model->isNewRecord;
             }],
-            // Only required for the app language
-            [['content'], 'required', 'when' => function($model) {
-                return $model->language == Yii::$app->language;
-            }],
             // Trim
             [['title', 'content'], 'trim'],
             // Types

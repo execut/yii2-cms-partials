@@ -80,7 +80,10 @@ class PagePartial extends \yii\db\ActiveRecord
                     ActiveRecord::EVENT_BEFORE_UPDATE => 'updated_at',
                 ],
                 'value' => function() { return time(); },
-            ]
+            ],
+            'image' => [
+                'class' => 'infoweb\cms\behaviors\ImageBehave',
+            ],
         ]);
     }
     

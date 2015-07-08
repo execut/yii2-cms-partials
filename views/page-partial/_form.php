@@ -15,7 +15,7 @@ use yii\bootstrap\Tabs;
     // Init the form
     $form = ActiveForm::begin([
         'id'                        => 'page-partial-form',
-        'options'                   => ['class' => 'tabbed-form'],
+        'options'                   => ['class' => 'tabbed-form', 'enctype' => 'multipart/form-data'],
         'enableAjaxValidation'      => true,
         'enableClientValidation'    => false        
     ]);
@@ -38,6 +38,10 @@ use yii\bootstrap\Tabs;
         [
             'label'     => Yii::t('app', 'Data'),
             'content'   => $this->render('_data_tab', ['model' => $model, 'form' => $form]),
+        ],
+        [
+            'label' => Yii::t('infoweb/cms', 'Image'),
+            'content' => $this->render('_image_tab', ['model' => $model, 'form' => $form]),
         ],
     ]; 
     
