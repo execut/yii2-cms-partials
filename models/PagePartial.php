@@ -37,7 +37,7 @@ class PagePartial extends \yii\db\ActiveRecord
     {
         return [
             // Required
-            [['type'], 'required'],
+            [['type', 'name'], 'required'],
             // Types
             [['type'], 'string'],
             [['name'], 'string', 'max' => 255],
