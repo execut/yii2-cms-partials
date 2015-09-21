@@ -28,6 +28,12 @@ if (strlen($model->getImage()->name) > 0) {
             'showRemove' => true,
             'showUpload' => false,
             'initialCaption' => $initialCaption,
+            'browseLabel' => Yii::t('app', 'Browse'),
+            'removeLabel' => Yii::t('app', 'Remove'),
+            'removeTitle' => Yii::t('app', 'Remove selected files'),
+            'uploadLabel' => Yii::t('app', 'Upload'),
+            'uploadTitle' => Yii::t('app', 'Upload selected files'),
+            'cancelLabel' => Yii::t('app', 'Cancel'),
         ],
         'pluginEvents' => [
             "fileclear" => "function() {
