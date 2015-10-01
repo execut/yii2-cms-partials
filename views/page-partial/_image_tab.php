@@ -1,18 +1,5 @@
 <?php
-use yii\helpers\Html;
 use kartik\widgets\FileInput;
-
-$initialPreview = [];
-$initialCaption = '';
-
-if (strlen($model->getImage()->name) > 0) {
-    $initialPreview = [
-        Html::img($model->getImage()->getUrl(), ['class' => 'file-preview-image', 'alt' => $model->getImage()->alt, 'title' => $model->getImage()->alt]),
-    ];
-
-    $initialCaption = $model->getImage()->name;
-}
-
 ?>
 <div class="tab-content image-tab">
 
@@ -22,12 +9,12 @@ if (strlen($model->getImage()->name) > 0) {
             'accept' => 'image/*',
         ],
         'pluginOptions' => [
-            'initialPreview' => $initialPreview,
+            'initialPreview' => $model->image->fileInputWidgetPreview,
+            'initialCaption' => $model->image->name,
             'showPreview' => true,
             'showCaption' => true,
             'showRemove' => true,
             'showUpload' => false,
-            'initialCaption' => $initialCaption,
             'browseLabel' => Yii::t('app', 'Browse'),
             'removeLabel' => Yii::t('app', 'Remove'),
             'removeTitle' => Yii::t('app', 'Remove selected files'),
@@ -37,11 +24,10 @@ if (strlen($model->getImage()->name) > 0) {
         ],
         'pluginEvents' => [
             "fileclear" => "function() {
-                var request = $.post('remove-images', {model: '{$model->id}'});
-                request.done(function(response) {
-                });
+                var request = $.post({$model->removeRequest});
+                //request.done(function(response) {});
             }"
-        ]
+        ],
     ]) ?>
 
 </div>
