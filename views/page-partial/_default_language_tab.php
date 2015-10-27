@@ -6,7 +6,7 @@ use yii\helpers\ArrayHelper;
     <?= $form->field($model, "[{$model->language}]title")->textInput([
         'maxlength' => 255,
         'name' => "PagePartialLang[{$model->language}][title]",
-        'data-duplicateable' => Yii::$app->getModule('pages')->allowContentDuplication ? 'true' : 'false',
+        'data-duplicateable' => Yii::$app->getModule('partials')->allowContentDuplication ? 'true' : 'false',
     ]); ?>
     
     <?= $form->field($model, "[{$model->language}]content")->widget(CKEditor::className(), [
