@@ -4,11 +4,20 @@ use yii\helpers\ArrayHelper;
 use infoweb\cms\helpers\LanguageHelper;
 ?>
 <div class="tab-content language-tab">
+
     <?= $form->field($model, "[{$model->language}]title")->textInput([
         'maxlength' => 255,
         'name' => "PagePartialLang[{$model->language}][title]",
         'data-duplicateable' => Yii::$app->getModule('partials')->allowContentDuplication ? 'true' : 'false',
     ]); ?>
+
+    <?php if (Yii::$app->getModule('partials')->enableUrl): ?>
+    <?= $form->field($model, "[{$model->language}]url")->textInput([
+        'maxlength' => 255,
+        'name' => "PagePartialLang[{$model->language}][url]",
+        'data-duplicateable' => Yii::$app->getModule('partials')->allowContentDuplication ? 'true' : 'false',
+    ]); ?>
+    <?php endif; ?>
     
     <?= $form->field($model, "[{$model->language}]content")->widget(CKEditor::className(), [
         'name' => "PagePartialLang[{$model->language}][content]",

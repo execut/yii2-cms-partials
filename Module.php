@@ -15,6 +15,12 @@ class Module extends \yii\base\Module
     public $allowContentDuplication = true;
 
     /**
+     * Enable url field
+     * @var boolean
+     */
+    public $enableUrl = false;
+
+    /**
      * Module specific configuration of the ckEditor
      * @var array
      */

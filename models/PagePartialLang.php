@@ -40,12 +40,13 @@ class PagePartialLang extends \yii\db\ActiveRecord
                 return !$model->isNewRecord;
             }],
             // Trim
-            [['title', 'content'], 'trim'],
+            [['title', 'content', 'url'], 'trim'],
             // Types
             [['page_partial_id', 'created_at', 'updated_at'], 'integer'],
             [['content'], 'string'],
             [['language'], 'string', 'max' => 2],
-            [['title'], 'string', 'max' => 255]
+            [['title', 'url'], 'string', 'max' => 255],
+            [['url'], 'url', 'defaultScheme' => 'http'],
         ];
     }
 
@@ -59,8 +60,6 @@ class PagePartialLang extends \yii\db\ActiveRecord
             'language' => Yii::t('app', 'Language'),
             'title' => Yii::t('app', 'Title'),
             'content' => Yii::t('app', 'Content'),
-            'created_at' => Yii::t('app', 'Created At'),
-            'updated_at' => Yii::t('app', 'Updated At'),
         ];
     }
     

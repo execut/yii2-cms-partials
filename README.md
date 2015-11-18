@@ -51,3 +51,6 @@ All available configuration options are listed below with their default values.
 ___
 ##### allowContentDuplication (type: `boolean`, default: `true`)
 If this option is set to `true`, the `duplicateable` jquery plugin is activated on all translateable attributes.
+___
+##### enableUrl (type: `boolean`, default: `false`)
+If this option is set to `true`, the url field is enabled.
