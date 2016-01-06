@@ -25,7 +25,7 @@ class m140930_065454_init extends Migration
         // Create 'page_partials_lang' table
         $this->createTable('{{%page_partials_lang}}', [
             'page_partial_id'       => Schema::TYPE_INTEGER . ' NOT NULL',
-            'language'              => Schema::TYPE_STRING . '(2) NOT NULL',
+            'language'              => Schema::TYPE_STRING . '(10) NOT NULL',
             'title'                  => Schema::TYPE_STRING . '(255) NOT NULL',
             'content'               => Schema::TYPE_TEXT . ' NOT NULL',
             'created_at'            => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL',

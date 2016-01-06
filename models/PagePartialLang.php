@@ -44,7 +44,7 @@ class PagePartialLang extends \yii\db\ActiveRecord
             // Types
             [['page_partial_id', 'created_at', 'updated_at'], 'integer'],
             [['content'], 'string'],
-            [['language'], 'string', 'max' => 2],
+            [['language'], 'string', 'max' => 10],
             [['title', 'url'], 'string', 'max' => 255],
             [['url'], 'url', 'defaultScheme' => 'http'],
         ];
