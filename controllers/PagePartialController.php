@@ -4,8 +4,9 @@ namespace infoweb\partials\controllers;
 
 use Yii;
 use infoweb\partials\models\PagePartial;
-use infoweb\partials\models\PagePartialLang;
-use infoweb\partials\models\PagePartialSearch;
+use infoweb\partials\models\Lang;
+use infoweb\partials\models\Search;
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
@@ -36,7 +37,7 @@ class PagePartialController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new PagePartialSearch();
+        $searchModel = new Search();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -66,20 +67,21 @@ class PagePartialController extends Controller
                                
                 // Populate the model with the POST data
                 $model->load($post);
-                
+
+                // Get the translation models
                 // Create an array of translation models
                 $translationModels = [];
-                
+
                 foreach ($languages as $languageId => $languageName) {
-                    $translationModels[$languageId] = new PagePartialLang(['language' => $languageId]);
+                    $translationModels[$languageId] = new Lang(['language' => $languageId]);
                 }
-                
+
                 // Populate the translation models
                 Model::loadMultiple($translationModels, $post);
 
                 // Validate the model and translation models
                 $response = array_merge(ActiveForm::validate($model), ActiveForm::validateMultiple($translationModels));
-                
+
                 // Return validation in JSON format
                 Yii::$app->response->format = Response::FORMAT_JSON;
                 return $response;
@@ -87,39 +89,33 @@ class PagePartialController extends Controller
             // Normal request, save models
             } else {
                 // Wrap the everything in a database transaction
-                $transaction = Yii::$app->db->beginTransaction();                
-                
-                // Save the main model
-                if (!$model->load($post) || !$model->save()) {
+                $transaction = Yii::$app->db->beginTransaction();
+
+                // Load the main model
+                if (!$model->load($post)) {
                     return $this->render('create', [
-                        'model' => $model
+                        'model' => $model,
                     ]);
-                } 
-                
-                // Save the translations
-                foreach ($languages as $languageId => $languageName) {
-                    
-                    $data = $post['PagePartialLang'][$languageId];
-                    
-                    // Set the translation language and attributes                    
-                    $model->language    = $languageId;
-                    $model->title        = $data['title'];
-                    $model->content     = $data['content'];
-                    
-                    if (!$model->saveTranslation()) {
-                        return $this->render('create', [
-                            'model' => $model
-                        ]);    
-                    }                      
+                }
+
+                // Attach translations
+                foreach (Yii::$app->request->post('Lang', []) as $language => $data) {
+                    foreach ($data as $attribute => $translation) {
+                        $model->translate($language)->$attribute = $translation;
+                    }
+                }
+
+                // Save the model
+                if (!$model->save()) {
+                    return $this->render('update', [
+                        'model' => $model,
+                    ]);
                 }
 
                 // Upload and attach images
                 $model->uploadImage();
                 
                 $transaction->commit();
-                
-                // Switch back to the main language
-                $model->language = Yii::$app->language;
                 
                 // Set flash message
                 Yii::$app->getSession()->setFlash('partial', Yii::t('app', '"{item}" has been created', ['item' => $model->name]));
@@ -148,9 +144,8 @@ class PagePartialController extends Controller
      */
     public function actionUpdate($id)
     {
-        $languages = Yii::$app->params['languages'];
         $model = $this->findModel($id);
-        
+
         if (Yii::$app->request->getIsPost()) {
             
             $post = Yii::$app->request->post();
@@ -160,20 +155,16 @@ class PagePartialController extends Controller
                                
                 // Populate the model with the POST data
                 $model->load($post);
-                
-                // Create an array of translation models
-                $translationModels = [];
-                
-                foreach ($languages as $languageId => $languageName) {
-                    $translationModels[$languageId] = $model->getTranslation($languageId);
-                }
-                
+
+                // Get the translation models
+                $translationModels = ArrayHelper::index($model->getTranslations()->all(), 'language');
+
                 // Populate the translation models
                 Model::loadMultiple($translationModels, $post);
 
                 // Validate the model and translation models
                 $response = array_merge(ActiveForm::validate($model), ActiveForm::validateMultiple($translationModels));
-                
+
                 // Return validation in JSON format
                 Yii::$app->response->format = Response::FORMAT_JSON;
                 return $response;
@@ -181,39 +172,33 @@ class PagePartialController extends Controller
             // Normal request, save models
             } else {
                 // Wrap the everything in a database transaction
-                $transaction = Yii::$app->db->beginTransaction();                
-                
-                // Save the main model
-                if (!$model->load($post) || !$model->save()) {
-                    return $this->render('update', [
-                        'model' => $model
+                $transaction = Yii::$app->db->beginTransaction();
+
+                // Load the model
+                if (!$model->load($post)) {
+                    return $this->render('create', [
+                        'model' => $model,
                     ]);
-                } 
-                
-                // Save the translation models
-                foreach ($languages as $languageId => $languageName) {
-                    
-                    $data = $post['PagePartialLang'][$languageId];
-                    
-                    $model->language    = $languageId;
-                    $model->title        = $data['title'];
-                    $model->content     = $data['content'];
-                    
-                    if (!$model->saveTranslation()) {
-                        return $this->render('update', [
-                            'model' => $model
-                        ]);    
-                    }                      
                 }
 
+                // Attach translations
+                foreach (Yii::$app->request->post('Lang', []) as $language => $data) {
+                    foreach ($data as $attribute => $translation) {
+                        $model->translate($language)->$attribute = $translation;
+                    }
+                }
+
+                // Save the model
+                if (!$model->save()) {
+                    return $this->render('update', [
+                        'model' => $model,
+                    ]);
+                }
                 // Upload and attach images
                 $model->uploadImage();
 
                 $transaction->commit();
-                
-                // Switch back to the main language
-                $model->language = Yii::$app->language;
-                
+
                 // Set flash message
                 Yii::$app->getSession()->setFlash('partial', Yii::t('app', '"{item}" has been updated', ['item' => $model->name]));
               

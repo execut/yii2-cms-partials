@@ -8,9 +8,9 @@ use yii\data\ActiveDataProvider;
 use infoweb\partials\models\PagePartial;
 
 /**
- * PagePartialSearch represents the model behind the search form about `infoweb\partials\models\PagePartial`.
+ * Search represents the model behind the search form about `infoweb\partials\models\PagePartial`.
  */
-class PagePartialSearch extends PagePartial
+class Search extends PagePartial
 {
     /**
      * @inheritdoc

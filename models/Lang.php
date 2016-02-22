@@ -17,7 +17,7 @@ use yii\behaviors\TimestampBehavior;
  * @property string $created_at
  * @property string $updated_at
  */
-class PagePartialLang extends \yii\db\ActiveRecord
+class Lang extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
