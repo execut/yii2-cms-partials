@@ -5,7 +5,7 @@ use kartik\grid\GridView;
 use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
-/* @var $searchModel infoweb\partials\models\PagePartialSearch */
+/* @var $searchModel infoweb\partials\models\Search */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = Yii::t('infoweb/partials', 'Page Partials');
