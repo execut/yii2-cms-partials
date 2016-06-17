@@ -1,16 +1,23 @@
 <?php
 use yii\helpers\Html;
+
+$properties = [];
+if(!Yii::$app->user->can('Superadmin')) {
+    $properties['disabled'] = 'disabled';
+}
+
 ?>
 <div class="tab-content default-tab">
 
     <?= $form->field($model, "name")->textInput(); ?>
 
-    <?= $form->field($model, 'type')->dropDownList([
+    <?php echo $form->field($model, 'type')->dropDownList([
         'system'        => Yii::t('app', 'System'),
         'user-defined'  => Yii::t('app', 'User defined')
-    ],[
-        'options' => [
-            'system' => ['disabled' => (Yii::$app->user->can('Superadmin')) ? false : true]
-        ]
-    ]); ?>
+    ], $properties); 
+
+    ?>
+    <div hidden="hidden">    
+        <?php echo $form->field($model, 'type')->hiddenInput()->label(''); ?>
+    </div>
 </div>
