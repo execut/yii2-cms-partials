@@ -241,6 +241,8 @@ class PagePartialController extends Controller
             return $this->render($this->action, $params);
         }
 
+        $model->uploadImage();
+
         $transaction->commit();
 
         // Set flash message

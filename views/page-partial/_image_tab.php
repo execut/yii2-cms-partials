@@ -2,7 +2,6 @@
 use kartik\widgets\FileInput;
 ?>
 <div class="tab-content image-tab">
-
     <?= FileInput::widget([
         'name' => 'ImageUploadForm[image]',
         'options' => [
@@ -29,5 +28,4 @@ use kartik\widgets\FileInput;
             }"
         ],
     ]) ?>
-
 </div>
